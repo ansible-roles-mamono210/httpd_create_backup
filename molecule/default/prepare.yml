@@ -2,5 +2,46 @@
 - name: Prepare
   hosts: all
   become: true
+
+  vars:
+    pip_install_packages:
+      - name: pip
+        version: "20.3.4"
+      - name: boto3
+    pip_package: python-pip
+    pip_executable: pip
+    working_dir: /tmp/s3
+
   roles:
-    - httpd_install
+    - role: httpd_install
+    - role: geerlingguy.repo-epel
+    - role: geerlingguy.pip
+      vars:
+        pip_package: python3-pip
+        pip_executable: pip3
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == "8"
+    - role: geerlingguy.pip
+      vars:
+        pip_package: python-pip
+        pip_executable: pip
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == "7"
+
+  tasks:
+    - name: Simple GET operation (To transfer AWS credentials infomations to the target system, do not remove 'aws_access_key', 'aws_secret_key', and 'region')
+      amazon.aws.aws_s3:
+        aws_access_key: '{{ aws_access_key_id }}'
+        aws_secret_key: '{{ aws_secret_access_key }}'
+        region: '{{ aws_region }}'
+        bucket: tomonorimatsumura-molecule
+        object: /httpd_create_backup/httpd-log.tar.gz
+        dest: /tmp/httpd_log.tar.gz
+        mode: get
+
+    - name: Unarchieve mock data
+      ansible.builtin.unarchive:
+        src: /tmp/httpd_log.tar.gz
+        dest: /var/log/httpd/
