@@ -36,7 +36,7 @@
         aws_access_key: '{{ aws_access_key_id }}'
         aws_secret_key: '{{ aws_secret_access_key }}'
         region: '{{ aws_region }}'
-        bucket: tomonorimatsumura-molecule
+        bucket: 'tomonorimatsumura-molecule'
         object: /httpd_create_backup/httpd-log.tar.gz
         dest: /tmp/httpd_log.tar.gz
         mode: get
