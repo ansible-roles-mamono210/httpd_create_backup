@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: httpd_create_backup 
+  role_name: httpd_create_backup
   author: mamono210
   description: Create backup of httpd files for CentOS7/8
   company: no name

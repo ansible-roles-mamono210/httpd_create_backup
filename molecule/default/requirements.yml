@@ -1,4 +1,4 @@
 ---
 roles:
-  - name: httpd_install 
-    src: https://github.com/ansible-roles-matsumura/httpd_install.git
+  - name: httpd_install
+    src: https://github.com/ansible-roles-mamono210/httpd_install.git
