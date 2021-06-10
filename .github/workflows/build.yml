@@ -28,6 +28,7 @@ jobs:
         run: |
           ansible-galaxy install git+https://github.com/${{ github.repository }},${{ github.sha }}
           ansible-galaxy install git+https://github.com/ansible-roles-mamono210/httpd_install.git
+          ansible-galaxy install geerlingguy.pip
 
       - name: Execulte ansible-lint
         run: |
