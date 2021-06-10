@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  role_name: httpd_create_backup 
+  author: mamono210
+  description: Create backup of httpd files for CentOS7/8
+  company: no name
+  license: "license (BSD, MIT)"
+  min_ansible_version: 3.0
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+  galaxy_tags: []
+dependencies: []

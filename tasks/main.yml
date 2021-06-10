@@ -1,0 +1,17 @@
+---
+- name: Delete working directory
+  ansible.builtin.file:
+    path: '{{ backup_data_path }}'
+    state: absent
+
+- name: Create working directory
+  ansible.builtin.file:
+    path: '{{ backup_data_path }}'
+    recurse: yes
+    state: directory
+
+- name: Archive httpd log files
+  ansible.builtin.archive:
+    path: "{{ httpd_log_dir }}"
+    dest: "{{ backup_data_path }}/{{ httpd_log_archive_file }}"
+    mode: 0755
