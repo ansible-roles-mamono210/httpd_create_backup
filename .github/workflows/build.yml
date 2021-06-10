@@ -27,6 +27,7 @@ jobs:
       - name: Install galaxy roles
         run: |
           ansible-galaxy install git+https://github.com/${{ github.repository }},${{ github.sha }}
+          ansible-galaxy install git+https://github.com/ansible-roles-matsumura/httpd_install.git
 
       - name: Execulte ansible-lint
         run: |
