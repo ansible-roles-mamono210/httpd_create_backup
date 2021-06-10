@@ -1,2 +1,4 @@
 ---
 backup_data_path: /tmp/httpd_log
+httpd_log_dir: /var/log/httpd
+httpd_log_archive_file: httpd-log.tar.gz
