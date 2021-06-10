@@ -2,3 +2,5 @@
 roles:
   - name: httpd_install
     src: https://github.com/ansible-roles-mamono210/httpd_install.git
+  - name: geerlingguy.repo-epel
+  - name: geerlingguy.pip
