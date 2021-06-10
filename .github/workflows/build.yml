@@ -67,16 +67,19 @@ jobs:
         run: python3 -m pip install -r molecule/requirements.txt
 
       - name: Test with molecule
+        run: |
+          molecule test --scenario-name ${{ matrix.scenario-name }}
         env:
           ANSIBLE_FORCE_COLOR: '1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           MOLECULE_DISTRO: ${{ matrix.distro }}
           MOLECULE_NO_LOG: False
           PROFILE_TASKS_SORT_ORDER: 'none'
           PROFILE_TASKS_TASK_OUTPUT_LIMIT: '100'
           PY_COLORS: '1'
           TZ: 'Asia/Tokyo'
-        run: |
-          molecule test --scenario-name ${{ matrix.scenario-name }}
 
       - name: Show Ansible version
         run: |
